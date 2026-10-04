@@ -90,11 +90,39 @@ panic("critical error")
 
 ## Code Walkthrough
 
-=== "11_errors.go"
+=== "Runnable example"
 
     ```go
-    --8<-- "code/11_errors.go"
+    package main
+
+    import (
+        "errors"
+        "fmt"
+    )
+
+    var ErrEmpty = errors.New("empty input")
+
+    func parse(s string) (int, error) {
+        if s == "" {
+            return 0, fmt.Errorf("parse: %w", ErrEmpty)
+        }
+        return len(s), nil
+    }
+
+    func main() {
+        defer func() {
+            if r := recover(); r != nil { fmt.Println("recovered:", r) }
+        }()
+
+        if _, err := parse(""); errors.Is(err, ErrEmpty) {
+            fmt.Println("wrapped sentinel:", err)
+        }
+
+        panic("boom") // unwinds; deferred func recovers
+    }
     ```
+
+Full program: `code/11_errors.go`.
 
 !!! example "Try it yourself"
     ```bash

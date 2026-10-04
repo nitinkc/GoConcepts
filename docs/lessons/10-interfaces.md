@@ -78,11 +78,31 @@ anything = "hello"
 
 ## Code Walkthrough
 
-=== "10_interfaces.go"
+=== "Runnable example"
 
     ```go
-    --8<-- "code/10_interfaces.go"
+    package main
+
+    import "fmt"
+
+    type Speaker interface{ Speak() string }
+
+    type Dog struct{}
+    func (Dog) Speak() string { return "woof" }
+
+    func say(s Speaker) { fmt.Println(s.Speak()) }
+
+    func main() {
+        say(Dog{})
+
+        var v any = 42            // empty interface
+        if n, ok := v.(int); ok { // type assertion
+            fmt.Println("int:", n)
+        }
+    }
     ```
+
+Full program: `code/10_interfaces.go`.
 
 !!! example "Try it yourself"
     ```bash

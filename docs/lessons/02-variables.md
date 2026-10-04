@@ -47,11 +47,26 @@ Variables declared without initialization get zero values:
 
 ## Code Walkthrough
 
-=== "02_variables.go"
+=== "Runnable example"
 
     ```go
-    --8<-- "code/02_variables.go"
+    package main
+
+    import "fmt"
+
+    func main() {
+        var name string = "Go"   // explicit type
+        var age = 10             // inferred
+        version := 1.23          // short declaration
+
+        var count int            // zero value: 0
+        var ready bool           // zero value: false
+
+        fmt.Println(name, age, version, count, ready)
+    }
     ```
+
+Full program: `code/02_variables.go`.
 
 !!! example "Try it yourself"
     ```bash

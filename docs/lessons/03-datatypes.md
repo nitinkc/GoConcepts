@@ -46,16 +46,22 @@ f := float64(i)  // Explicit conversion required
 
 ## Code Walkthrough
 
-=== "03_datatypes.go"
+=== "Runnable example"
 
     ```go
-    --8<-- "code/03_datatypes.go"
-    ```
+    package main
 
-!!! example "Try it yourself"
-    ```bash
-    cd code
-    go run . datatypes
+    import "fmt"
+
+    func main() {
+        var i int = 42
+        var f float64 = 3.14
+        var b bool = true
+        var s string = "hello"
+
+        fmt.Println(i, f, b, s, len(s))
+        fmt.Println(float64(i) * f) // explicit conversion
+    }
     ```
 
 !!! tip "Exercises"

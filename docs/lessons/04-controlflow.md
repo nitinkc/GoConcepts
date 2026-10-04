@@ -65,11 +65,34 @@ for index, value := range collection { }
 
 ## Code Walkthrough
 
-=== "04_controlflow.go"
+=== "Runnable example"
 
     ```go
-    --8<-- "code/04_controlflow.go"
+    package main
+
+    import "fmt"
+
+    func main() {
+        if n := 7; n%2 == 0 {
+            fmt.Println("even")
+        } else {
+            fmt.Println("odd") // prints
+        }
+
+        for i := 0; i < 3; i++ { fmt.Println(i) }
+
+        for _, v := range []string{"a", "b"} { fmt.Println(v) }
+
+        switch day := "Mon"; day {
+        case "Sat", "Sun":
+            fmt.Println("weekend")
+        default:
+            fmt.Println("weekday")
+        }
+    }
     ```
+
+Full program: `code/04_controlflow.go`.
 
 !!! example "Try it yourself"
     ```bash

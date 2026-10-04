@@ -7,7 +7,7 @@
 A pointer is a value that stores the address of another value. Go pointers support indirect access and mutation, but deliberately do not support normal pointer arithmetic. Go remains **pass-by-value**: when a pointer is passed to a function, the address itself is copied.
 
 !!! info "Interactive draw.io source"
-    Open the [Go pointers visual learning path](../../diagrams/go-pointers-learning-path.drawio) to edit all four diagrams.
+    Open the [Go pointers visual learning path](../diagrams/go-pointers-learning-path.drawio) to edit all four diagrams.
 
 ## Learning Path
 
@@ -403,11 +403,32 @@ Before adding a pointer to an API, ask:
 
 ## Code Walkthrough
 
-=== "09_pointers.go"
+=== "Runnable example"
 
     ```go
-    --8<-- "code/09_pointers.go"
+    package main
+
+    import "fmt"
+
+    func addViaPtr(s *[]int, n int) { *s = append(*s, n) }
+
+    func main() {
+        x := 42
+        p := &x
+        *p = 100                 // write through pointer
+
+        pp := &p
+        **pp = 55                // two levels of indirection
+
+        s := []int{1, 2}
+        s[0] = 99                // elements shared — no pointer needed
+        addViaPtr(&s, 3)         // *[]int replaces the slice header
+
+        fmt.Println(x, *p, **pp, s)
+    }
     ```
+
+Full program: `code/09_pointers.go`.
 
 !!! example "Try it yourself"
     ```bash

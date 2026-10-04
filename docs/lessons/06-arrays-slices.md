@@ -43,18 +43,30 @@ copy(dest, src)             // Copy slices
 ### Slicing
 ```go
 arr[1:3]  // Elements 1, 2
-arr[:3]   // First 3 elements
+arr[:3]   // First 3 elements (0,1,2), excluding the index 3
 arr[2:]   // From index 2 to end
 arr[:]    // All elements
 ```
 
 ## Code Walkthrough
 
-=== "06_arrays_slices.go"
+=== "Runnable example"
 
     ```go
-    --8<-- "code/06_arrays_slices.go"
+    package main
+
+    import "fmt"
+
+    func main() {
+        arr := [3]int{1, 2, 3}          // fixed size
+        s := []int{1, 2, 3}             // dynamic view
+        s = append(s, 4, 5)             // may reallocate
+        fmt.Println(arr, s, len(s), cap(s))
+        fmt.Println(s[1:3], s[:2])      // slicing
+    }
     ```
+
+Full program: `code/06_arrays_slices.go`.
 
 !!! example "Try it yourself"
     ```bash

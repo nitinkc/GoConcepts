@@ -69,11 +69,35 @@ mu.Unlock()
 
 ## Code Walkthrough
 
-=== "12_concurrency.go"
+=== "Runnable example"
 
     ```go
-    --8<-- "code/12_concurrency.go"
+    package main
+
+    import (
+        "fmt"
+        "sync"
+    )
+
+    func main() {
+        var wg sync.WaitGroup
+        ch := make(chan int, 2)
+
+        for i := 0; i < 2; i++ {
+            wg.Add(1)
+            go func(n int) {
+                defer wg.Done()
+                ch <- n * n
+            }(i)
+        }
+
+        wg.Wait()
+        close(ch)
+        for v := range ch { fmt.Println(v) }
+    }
     ```
+
+Full program: `code/12_concurrency.go`.
 
 !!! example "Try it yourself"
     ```bash

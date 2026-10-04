@@ -87,6 +87,12 @@ markdown_extensions:
 
 
 
+extra_javascript:
+  - javascripts/go-runner.js
+
+extra_css:
+  - stylesheets/go-runner.css
+
 nav:
   - Start Here:
       - Overview & Learning Path: index.md

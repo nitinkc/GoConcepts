@@ -54,11 +54,28 @@ for key, value := range m {
 
 ## Code Walkthrough
 
-=== "07_maps.go"
+=== "Runnable example"
 
     ```go
-    --8<-- "code/07_maps.go"
+    package main
+
+    import "fmt"
+
+    func main() {
+        ages := map[string]int{"alice": 30}
+        ages["bob"] = 25
+
+        v, ok := ages["carol"]          // comma-ok
+        fmt.Println(v, ok)              // 0 false
+
+        delete(ages, "alice")
+        for k, v := range ages {
+            fmt.Println(k, v)
+        }
+    }
     ```
+
+Full program: `code/07_maps.go`.
 
 !!! example "Try it yourself"
     ```bash

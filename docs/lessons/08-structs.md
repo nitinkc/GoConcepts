@@ -61,11 +61,30 @@ type Employee struct {
 
 ## Code Walkthrough
 
-=== "08_structs.go"
+=== "Runnable example"
 
     ```go
-    --8<-- "code/08_structs.go"
+    package main
+
+    import "fmt"
+
+    type Person struct {
+        Name string
+        Age  int
+    }
+
+    func (p Person) Greet() string { return "Hi " + p.Name }
+    func (p *Person) Birthday()    { p.Age++ } // mutates
+
+    func main() {
+        p := Person{Name: "Alice", Age: 30}
+        fmt.Println(p.Greet())
+        p.Birthday()
+        fmt.Println(p.Age) // 31
+    }
     ```
+
+Full program: `code/08_structs.go`.
 
 !!! example "Try it yourself"
     ```bash
