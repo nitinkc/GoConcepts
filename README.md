@@ -7,7 +7,7 @@ An incremental Go programming course — docs site + runnable code.
 - [https://app.gointerview.dev/cheatsheet](https://app.gointerview.dev/cheatsheet)
 
 ## Docs
-[https://github.com/nitinkc/GoConcepts](https://github.com/nitinkc/GoConcepts)
+[https://nitinkc.github.io/GoConcepts/](https://nitinkc.github.io/GoConcepts/)
 
 ## Layout
 
