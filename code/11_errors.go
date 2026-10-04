@@ -196,6 +196,8 @@ func Errors() {
 }
 
 // Using defer and recover for panic handling
+// A deferred function runs when its surrounding function is about to return.
+// Multiple deferred functions run in LIFO order: the last one deferred runs first.
 func safeOperation() (result string) {
 	defer func() {
 		if r := recover(); r != nil {

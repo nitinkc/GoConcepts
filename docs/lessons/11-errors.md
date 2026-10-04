@@ -58,7 +58,27 @@ if errors.Is(err, SomeError) { }
 if errors.As(err, &myErr) { }
 ```
 
+### Defer and LIFO Order
+
+A `defer` statement schedules a function call to run when the surrounding function is about to return. If a function schedules multiple deferred calls, Go executes them in **LIFO (Last In, First Out)** order: the last call deferred is the first one run. This stack-like behavior is useful when resources must be cleaned up in the reverse order in which they were acquired.
+
+```go
+func deferredCalls() {
+    defer fmt.Println("first")
+    defer fmt.Println("second")
+    defer fmt.Println("third")
+}
+
+// Output when deferredCalls returns:
+// third
+// second
+// first
+```
+
 ### Panic and Recover
+
+A deferred function can call `recover` to stop a panic while the stack is unwinding.
+
 ```go
 defer func() {
     if r := recover(); r != nil {

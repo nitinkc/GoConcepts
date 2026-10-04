@@ -9,11 +9,6 @@ An incremental Go programming course — docs site + runnable code.
 ## Docs
 [https://nitinkc.github.io/GoConcepts/](https://nitinkc.github.io/GoConcepts/)
 
-## Layout
-
-- `docs/` — MkDocs lesson pages (concepts, diagrams, quizzes)
-- `code/` — single `package main` with one file per lesson, dispatched by `main.go`
-- `mkdocs.yml` — site config; `requirements.txt` — Python deps
 
 ## Run the code
 
@@ -26,6 +21,9 @@ go run . basics    # or . 1 … . 12, . scan for the interactive demo
 ## Build the docs
 
 ```bash
+uvx --with mkdocs-material mkdocs serve
+
+# OR
 pip install -r requirements.txt
 mkdocs serve       # live preview at http://127.0.0.1:8000
 mkdocs build       # static site in site/

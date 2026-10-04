@@ -41,6 +41,36 @@ num := 42
 modify(&num)  // num is now 100
 ```
 
+### Pointer to a Slice
+
+```go
+func addNumber(slice *[]int, num int) {
+    *slice = append(*slice, num)
+}
+
+numbers := []int{1, 2}
+addNumber(&numbers, 3) // numbers is now [1 2 3]
+```
+
+In `slice *[]int`, `[]int` is a slice of integers and the leading `*` makes the parameter a pointer to that slice. The caller passes its slice's address with `&numbers`, and `*slice` dereferences the pointer to access or replace the caller's slice value.
+
+A slice is a small descriptor containing a pointer to an underlying array, a length, and a capacity. `append` returns an updated descriptor and may allocate a new underlying array, so its result must be assigned:
+
+```go
+*slice = append(*slice, num) // Correct: updates the caller's slice
+_ = append(*slice, num)     // Result discarded: caller's length is unchanged
+```
+
+The blank identifier `_` explicitly discards a value. Although the second line compiles, it is not a valid way to add an element to the caller's slice because the new slice descriptor is lost. An often simpler and more idiomatic alternative is to return the updated slice:
+
+```go
+func addNumber(slice []int, num int) []int {
+    return append(slice, num)
+}
+
+numbers = addNumber(numbers, 3)
+```
+
 ### Structs
 ```go
 person := &Person{Name: "Alice"}
