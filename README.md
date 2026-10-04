@@ -2,7 +2,10 @@
 
 An incremental Go programming course — docs site + runnable code.
 
-[https://app.gointerview.dev/quiz](https://app.gointerview.dev/quiz)
+- [https://app.gointerview.dev/quiz](https://app.gointerview.dev/quiz)
+
+- [https://app.gointerview.dev/cheatsheet](https://app.gointerview.dev/cheatsheet)
+
 
 ## Layout
 
