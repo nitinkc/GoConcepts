@@ -1,0 +1,113 @@
+site_name: GoLang Learning
+site_url: ""
+site_description: "An incremental Go programming course with diagrams, exercises, and quizzes"
+repo_url: ""
+repo_name: GoLangLearning
+
+theme:
+  name: material
+  features:
+    # Navigation
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.expand
+    - navigation.indexes
+    - navigation.path
+    - navigation.top           # Back-to-top button
+    - navigation.footer        # Prev/Next page links
+    # navigation.instant disabled — breaks live reload (re-enable for production builds)
+    # Search
+    - search.suggest
+    - search.highlight
+    - search.share
+    # Content
+    - content.code.copy
+    - content.code.annotate
+    - content.tabs.link
+    - content.tooltips
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: teal
+      accent: blue
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: teal
+      accent: blue
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+
+plugins:
+  - search:
+      lang: en
+  - mkdocs_quiz
+  - glightbox
+  - mermaid2
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+      use_pygments: true
+      guess_lang: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - toc:
+      permalink: true
+      title: On this page
+  - abbr
+  - attr_list
+  - md_in_html
+  - pymdownx.snippets:
+      base_path:
+        - docs
+        - .            # lets docs pages single-source the lesson READMEs and .go files
+      check_paths: true
+  - tables
+
+
+
+nav:
+  - Start Here:
+      - Overview & Learning Path: index.md
+  - Theory:
+      - 01 - Basics: lessons/01-basics.md
+      - 02 - Variables: lessons/02-variables.md
+      - 03 - Data Types: lessons/03-datatypes.md
+      - 04 - Control Flow: lessons/04-controlflow.md
+      - 05 - Functions: lessons/05-functions.md
+      - 06 - Arrays & Slices: lessons/06-arrays-slices.md
+      - 07 - Maps: lessons/07-maps.md
+      - 08 - Structs: lessons/08-structs.md
+      - 09 - Pointers: lessons/09-pointers.md
+      - 10 - Interfaces: lessons/10-interfaces.md
+      - 11 - Error Handling: lessons/11-errors.md
+      - 12 - Concurrency: lessons/12-concurrency.md
+      - 13 - Concurrency Deep Dive: lessons/13-concurrency-deep-dive.md
+      - 14 - net/http Server: lessons/14-net-http.md
+      - "15 - Routers: chi vs gin": lessons/15-routers-chi-gin.md
+      - 16 - GORM: lessons/16-gorm.md
+  - Knowledge Check:
+      - Final Quiz: quiz/final-quiz.md
+      - Interview Q&A Bank: quiz/17-qa-bank.md
+

@@ -1,0 +1,58 @@
+<mxfile host="Electron">
+  <diagram id="http-flow" name="net-http Request Flow">
+    <mxGraphModel dx="900" dy="650" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="title" value="net/http: request lifecycle (one goroutine per connection)" style="text;html=1;fontSize=18;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="250" y="20" width="560" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="client" value="Client&#xa;TCP + TLS" style="shape=actor;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="60" y="320" width="60" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="listen" value="net.Listen + Accept" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="220" y="330" width="150" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="conn" value="conn goroutine&#xa;(spawned per conn)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="430" y="330" width="160" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="mux" value="http.ServeMux&#xa;pattern match&#xa;GET /users/{id}" style="rhombus;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="660" y="310" width="170" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="mw" value="Middleware chain&#xa;logging → auth → metrics" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="900" y="200" width="170" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="handler" value="Handler&#xa;ServeHTTP(w, r)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="900" y="330" width="170" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="resp" value="Write response&#xa;(buffered, chunked)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="660" y="470" width="170" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="note1" value="Timeouts: ReadHeaderTimeout, ReadTimeout,&#xa;WriteTimeout, IdleTimeout — set ALL of them" style="text;html=1;fontSize=11;align=center;fillColor=#f8cecc;" vertex="1" parent="1">
+          <mxGeometry x="220" y="470" width="330" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="e1" value="dial" style="endArrow=classic;html=1;" edge="1" source="client" target="listen" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e2" value="go serve(conn)" style="endArrow=classic;html=1;" edge="1" source="listen" target="conn" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e3" value="parse request" style="endArrow=classic;html=1;" edge="1" source="conn" target="mux" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e4" value="wrap" style="endArrow=classic;html=1;" edge="1" source="mux" target="mw" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e5" value="" style="endArrow=classic;html=1;" edge="1" source="mw" target="handler" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e6" value="w.Write" style="endArrow=classic;html=1;dashed=1;" edge="1" source="handler" target="resp" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e7" value="response" style="endArrow=classic;html=1;dashed=1;" edge="1" source="resp" target="client" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
