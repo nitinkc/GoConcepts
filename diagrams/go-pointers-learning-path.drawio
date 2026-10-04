@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="Electron" version="24.7.17">
+  <diagram id="pointer-basics" name="1 - Pointer Basics">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="title" value="Go Pointer Mental Model" style="text;html=1;fontSize=26;fontStyle=1;align=center;verticalAlign=middle;fontColor=#1F2937;" vertex="1" parent="1"><mxGeometry x="300" y="30" width="500" height="50" as="geometry"/></mxCell>
+        <mxCell id="code" value="&lt;b&gt;Code&lt;/b&gt;&lt;br&gt;&lt;br&gt;x := 42&lt;br&gt;p := &amp;amp;x&lt;br&gt;*p = 100" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F3F4F6;strokeColor=#6B7280;fontFamily=Courier New;fontSize=16;align=left;spacingLeft=18;" vertex="1" parent="1"><mxGeometry x="70" y="150" width="220" height="180" as="geometry"/></mxCell>
+        <mxCell id="p" value="&lt;b&gt;p : *int&lt;/b&gt;&lt;br&gt;stores address&lt;br&gt;0x1040" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=16;" vertex="1" parent="1"><mxGeometry x="430" y="150" width="210" height="110" as="geometry"/></mxCell>
+        <mxCell id="x" value="&lt;b&gt;x : int&lt;/b&gt;&lt;br&gt;address: 0x1040&lt;br&gt;value: 42 → 100" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;fontSize=16;" vertex="1" parent="1"><mxGeometry x="790" y="150" width="220" height="110" as="geometry"/></mxCell>
+        <mxCell id="amp" value="&lt;b&gt;&amp;amp;x&lt;/b&gt;&lt;br&gt;take address" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=15;" vertex="1" parent="1"><mxGeometry x="330" y="350" width="150" height="85" as="geometry"/></mxCell>
+        <mxCell id="star-type" value="&lt;b&gt;*int&lt;/b&gt;&lt;br&gt;pointer type" style="ellipse;whiteSpace=wrap;html=1;fillColor=#E1D5E7;strokeColor=#9673A6;fontSize=15;" vertex="1" parent="1"><mxGeometry x="500" y="350" width="150" height="85" as="geometry"/></mxCell>
+        <mxCell id="star-value" value="&lt;b&gt;*p&lt;/b&gt;&lt;br&gt;read or write pointee" style="ellipse;whiteSpace=wrap;html=1;fillColor=#F8CECC;strokeColor=#B85450;fontSize=15;" vertex="1" parent="1"><mxGeometry x="670" y="350" width="170" height="85" as="geometry"/></mxCell>
+        <mxCell id="nil" value="&lt;b&gt;var q *int&lt;/b&gt;&lt;br&gt;zero value = nil&lt;br&gt;dereferencing nil panics" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8CECC;strokeColor=#B85450;fontSize=15;" vertex="1" parent="1"><mxGeometry x="160" y="540" width="250" height="110" as="geometry"/></mxCell>
+        <mxCell id="pass" value="&lt;b&gt;Go is always pass-by-value&lt;/b&gt;&lt;br&gt;Passing p copies the address.&lt;br&gt;Both pointer copies still reach x." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1D5E7;strokeColor=#9673A6;fontSize=15;" vertex="1" parent="1"><mxGeometry x="470" y="540" width="310" height="110" as="geometry"/></mxCell>
+        <mxCell id="edge1" value="p points to x" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;strokeWidth=2;strokeColor=#2563EB;fontSize=14;" edge="1" parent="1" source="p" target="x"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="edge2" value="&amp;amp;x produces p" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;endArrow=open;strokeColor=#D6B656;" edge="1" parent="1" source="amp" target="p"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="edge3" value="*p accesses x" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;endArrow=open;strokeColor=#B85450;" edge="1" parent="1" source="star-value" target="x"><mxGeometry relative="1" as="geometry"/></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="indirection" name="2 - Levels of Indirection">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="i0"/>
+        <mxCell id="i1" parent="i0"/>
+        <mxCell id="ititle" value="One Pointer vs Pointer-to-Pointer" style="text;html=1;fontSize=26;fontStyle=1;align=center;fontColor=#1F2937;" vertex="1" parent="i1"><mxGeometry x="280" y="35" width="540" height="50" as="geometry"/></mxCell>
+        <mxCell id="pp" value="&lt;b&gt;pp : **int&lt;/b&gt;&lt;br&gt;address of p" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1D5E7;strokeColor=#9673A6;fontSize=17;" vertex="1" parent="i1"><mxGeometry x="90" y="180" width="220" height="105" as="geometry"/></mxCell>
+        <mxCell id="ip" value="&lt;b&gt;p : *int&lt;/b&gt;&lt;br&gt;address of n" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=17;" vertex="1" parent="i1"><mxGeometry x="440" y="180" width="220" height="105" as="geometry"/></mxCell>
+        <mxCell id="in" value="&lt;b&gt;n : int&lt;/b&gt;&lt;br&gt;5" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;fontSize=17;" vertex="1" parent="i1"><mxGeometry x="790" y="180" width="220" height="105" as="geometry"/></mxCell>
+        <mxCell id="ipp1" value="*pp gives p" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeWidth=2;strokeColor=#9673A6;fontSize=15;" edge="1" parent="i1" source="pp" target="ip"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="ipp2" value="*p gives n" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeWidth=2;strokeColor=#2563EB;fontSize=15;" edge="1" parent="i1" source="ip" target="in"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="steps" value="&lt;b&gt;Dereference one level at a time&lt;/b&gt;&lt;br&gt;&lt;br&gt;pp&#160;&#160;&#160;&#160;→ **int&lt;br&gt;*pp&#160;&#160;→ *int&lt;br&gt;**pp → int&lt;br&gt;&lt;br&gt;**pp = 10 changes n" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F3F4F6;strokeColor=#6B7280;fontFamily=Courier New;fontSize=17;align=left;spacingLeft=20;" vertex="1" parent="i1"><mxGeometry x="180" y="390" width="310" height="220" as="geometry"/></mxCell>
+        <mxCell id="replace" value="&lt;b&gt;Replacing the inner pointer&lt;/b&gt;&lt;br&gt;&lt;br&gt;replacement := 50&lt;br&gt;*pp = &amp;amp;replacement&lt;br&gt;&lt;br&gt;p now points to replacement,&lt;br&gt;not n." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=16;" vertex="1" parent="i1"><mxGeometry x="590" y="390" width="330" height="220" as="geometry"/></mxCell>
+        <mxCell id="rare" value="**T is intentionally rare: prefer returning a replacement unless the API truly needs to change a caller's pointer." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8CECC;strokeColor=#B85450;fontSize=15;fontStyle=1;" vertex="1" parent="i1"><mxGeometry x="250" y="690" width="600" height="70" as="geometry"/></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="collections" name="3 - Arrays Slices Structs">
+    <mxGraphModel dx="1200" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="c0"/>
+        <mxCell id="c1" parent="c0"/>
+        <mxCell id="ctitle" value="Pointers with Arrays, Slices, and Structs" style="text;html=1;fontSize=26;fontStyle=1;align=center;fontColor=#1F2937;" vertex="1" parent="c1"><mxGeometry x="245" y="25" width="610" height="50" as="geometry"/></mxCell>
+        <mxCell id="arrays" value="&lt;b&gt;ARRAY [3]int&lt;/b&gt;&lt;br&gt;&lt;br&gt;Passed by value → full copy&lt;br&gt;*[3]int → mutate original&lt;br&gt;&amp;amp;arr[0] → pointer to element" style="swimlane;html=1;rounded=1;startSize=38;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=16;" vertex="1" parent="c1"><mxGeometry x="45" y="120" width="310" height="190" as="geometry"/></mxCell>
+        <mxCell id="slices" value="&lt;b&gt;SLICE []int&lt;/b&gt;&lt;br&gt;&lt;br&gt;Small descriptor: ptr + len + cap&lt;br&gt;Elements share backing array&lt;br&gt;append returns a new descriptor" style="swimlane;html=1;rounded=1;startSize=38;fillColor=#D5E8D4;strokeColor=#82B366;fontSize=16;" vertex="1" parent="c1"><mxGeometry x="395" y="120" width="310" height="190" as="geometry"/></mxCell>
+        <mxCell id="structs" value="&lt;b&gt;STRUCT *Account&lt;/b&gt;&lt;br&gt;&lt;br&gt;Field access auto-dereferences&lt;br&gt;Pointer receiver can mutate&lt;br&gt;*account creates shallow copy" style="swimlane;html=1;rounded=1;startSize=38;fillColor=#E1D5E7;strokeColor=#9673A6;fontSize=16;" vertex="1" parent="c1"><mxGeometry x="745" y="120" width="310" height="190" as="geometry"/></mxCell>
+        <mxCell id="slice-before" value="caller slice&lt;br&gt;ptr=A, len=3, cap=3" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;fontSize=15;" vertex="1" parent="c1"><mxGeometry x="90" y="410" width="220" height="80" as="geometry"/></mxCell>
+        <mxCell id="append" value="append(slice, 4)&lt;br&gt;capacity exceeded" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=14;" vertex="1" parent="c1"><mxGeometry x="430" y="390" width="220" height="120" as="geometry"/></mxCell>
+        <mxCell id="slice-after" value="returned slice&lt;br&gt;ptr=B, len=4, cap≥4" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;fontSize=15;" vertex="1" parent="c1"><mxGeometry x="790" y="410" width="220" height="80" as="geometry"/></mxCell>
+        <mxCell id="backing-a" value="old backing array A&lt;br&gt;[1 2 3]" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;fillColor=#F3F4F6;strokeColor=#6B7280;fontSize=15;" vertex="1" parent="c1"><mxGeometry x="95" y="580" width="210" height="90" as="geometry"/></mxCell>
+        <mxCell id="backing-b" value="new backing array B&lt;br&gt;[1 2 3 4]" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;fillColor=#D5E8D4;strokeColor=#82B366;fontSize=15;" vertex="1" parent="c1"><mxGeometry x="795" y="580" width="210" height="90" as="geometry"/></mxCell>
+        <mxCell id="ce1" value="describes" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeColor=#6B7280;" edge="1" parent="c1" source="slice-before" target="backing-a"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="ce2" value="must retain result" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeWidth=2;strokeColor=#82B366;fontSize=14;" edge="1" parent="c1" source="slice-before" target="append"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="ce3" value="new descriptor" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeWidth=2;strokeColor=#82B366;fontSize=14;" edge="1" parent="c1" source="append" target="slice-after"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="ce4" value="describes" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeColor=#82B366;" edge="1" parent="c1" source="slice-after" target="backing-b"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="warning" value="_ = append(...) discards the new descriptor. Prefer slice = append(slice, x); use *[]T only when replacing the caller's descriptor is intentional." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8CECC;strokeColor=#B85450;fontSize=15;fontStyle=1;" vertex="1" parent="c1"><mxGeometry x="230" y="725" width="640" height="70" as="geometry"/></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="production" name="4 - Production Decisions">
+    <mxGraphModel dx="1200" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="d0"/>
+        <mxCell id="d1" parent="d0"/>
+        <mxCell id="dtitle" value="Should This API Use a Pointer?" style="text;html=1;fontSize=26;fontStyle=1;align=center;fontColor=#1F2937;" vertex="1" parent="d1"><mxGeometry x="300" y="25" width="500" height="50" as="geometry"/></mxCell>
+        <mxCell id="start" value="API parameter or receiver" style="ellipse;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=16;fontStyle=1;" vertex="1" parent="d1"><mxGeometry x="420" y="100" width="260" height="80" as="geometry"/></mxCell>
+        <mxCell id="mutation" value="Must mutate caller state or preserve identity?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=15;" vertex="1" parent="d1"><mxGeometry x="395" y="230" width="310" height="130" as="geometry"/></mxCell>
+        <mxCell id="optional" value="Must distinguish absent from zero value?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=15;" vertex="1" parent="d1"><mxGeometry x="90" y="440" width="280" height="125" as="geometry"/></mxCell>
+        <mxCell id="copy" value="Is copying measured as expensive or forbidden?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=15;" vertex="1" parent="d1"><mxGeometry x="730" y="440" width="280" height="125" as="geometry"/></mxCell>
+        <mxCell id="pointer" value="&lt;b&gt;Consider *T&lt;/b&gt;&lt;br&gt;Document nil, ownership,&lt;br&gt;mutation, retention, concurrency" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;fontSize=16;" vertex="1" parent="d1"><mxGeometry x="405" y="650" width="290" height="110" as="geometry"/></mxCell>
+        <mxCell id="value" value="&lt;b&gt;Prefer T&lt;/b&gt;&lt;br&gt;Clear ownership&lt;br&gt;fewer nil and aliasing concerns&lt;br&gt;often better locality" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=16;" vertex="1" parent="d1"><mxGeometry x="80" y="650" width="270" height="110" as="geometry"/></mxCell>
+        <mxCell id="review" value="&lt;b&gt;Production checks&lt;/b&gt;&lt;br&gt;• shared writes need synchronization&lt;br&gt;• typed nil inside interface ≠ nil&lt;br&gt;• slice element pointers and append need care&lt;br&gt;• inspect escape analysis; benchmark allocations&lt;br&gt;• avoid unsafe unless specialized and reviewed" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1D5E7;strokeColor=#9673A6;fontSize=15;align=left;spacingLeft=15;" vertex="1" parent="d1"><mxGeometry x="745" y="635" width="310" height="145" as="geometry"/></mxCell>
+        <mxCell id="de1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeWidth=2;" edge="1" parent="d1" source="start" target="mutation"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="de2" value="yes" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeColor=#82B366;fontSize=14;" edge="1" parent="d1" source="mutation" target="pointer"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="de3" value="no" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeColor=#6B7280;fontSize=14;" edge="1" parent="d1" source="mutation" target="optional"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="de4" value="no" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeColor=#6B7280;fontSize=14;" edge="1" parent="d1" source="mutation" target="copy"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="de5" value="yes" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeColor=#82B366;fontSize=14;" edge="1" parent="d1" source="optional" target="pointer"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="de6" value="no" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeColor=#6C8EBF;fontSize=14;" edge="1" parent="d1" source="optional" target="value"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="de7" value="yes" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeColor=#82B366;fontSize=14;" edge="1" parent="d1" source="copy" target="pointer"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="de8" value="no" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeColor=#6C8EBF;fontSize=14;" edge="1" parent="d1" source="copy" target="value"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="de9" value="review risks" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;endArrow=open;strokeColor=#9673A6;fontSize=14;" edge="1" parent="d1" source="pointer" target="review"><mxGeometry relative="1" as="geometry"/></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
