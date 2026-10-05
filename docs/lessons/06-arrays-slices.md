@@ -42,7 +42,7 @@ copy(dest, src)             // Copy slices
 
 ### Slicing
 ```go
-arr[1:3]  // Elements 1, 2
+arr[1:3]  // Elements 1, 2, excluding index 3
 arr[:3]   // First 3 elements (0,1,2), excluding the index 3
 arr[2:]   // From index 2 to end
 arr[:]    // All elements

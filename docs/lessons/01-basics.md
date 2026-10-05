@@ -98,11 +98,3 @@ Which `fmt` function prints a formatted string like `"Age: %d"`?
 - [ ] `fmt.Print`
 - [ ] `fmt.Format`
 </quiz>
-
-
-=== "Runnable example"
-
-    ```go
-    name := "Go"
-    fmt.Println("Hello,", name)
-    ```
