@@ -76,6 +76,37 @@ anything = "hello"
 // Or use 'any' (Go 1.18+)
 ```
 
+Because every Go value satisfies the empty interface, a slice of `interface{}` can hold values of different types:
+
+```go
+data := []interface{}{
+    "123",
+    456,
+    "hello",
+    78.9,
+    true,
+}
+```
+
+The modern spelling is `[]any`; it means exactly the same thing as `[]interface{}`. Each element retains its dynamic type, which you can inspect with a type switch:
+
+```go
+for _, item := range data {
+    switch value := item.(type) {
+    case string:
+        fmt.Println("string:", value)
+    case int:
+        fmt.Println("int:", value)
+    case float64:
+        fmt.Println("float64:", value)
+    case bool:
+        fmt.Println("bool:", value)
+    }
+}
+```
+
+Use heterogeneous slices only when values genuinely have different types. Prefer a concrete slice such as `[]string` or `[]Employee` when every element has the same shape, because concrete types provide stronger compile-time checks.
+
 ## Code Walkthrough
 
 === "Runnable example"
