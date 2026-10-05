@@ -1,7 +1,7 @@
 site_name: GoLang Learning
-site_url: ""
+site_url: "https://nitinkc.github.io/GoConcepts/"
 site_description: "An incremental Go programming course with diagrams, exercises, and quizzes"
-repo_url: ""
+repo_url: "https://github.com/nitinkc/GoConcepts"
 repo_name: GoLangLearning
 
 theme:
@@ -29,14 +29,14 @@ theme:
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
-      primary: teal
+      primary: black
       accent: blue
       toggle:
         icon: material/weather-night
         name: Switch to dark mode
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
-      primary: teal
+      primary: black
       accent: blue
       toggle:
         icon: material/weather-sunny
